@@ -18,3 +18,5 @@ Flow
 
 - Also, pagination (endless scroll) and swipe refresh have been applied.
 
+<img src="https://user-images.githubusercontent.com/34041050/152230488-6c25bb74-cc51-4e2c-9948-7caab62c9cf9.jpg" width="300">                                                     <img src="https://user-images.githubusercontent.com/34041050/152230474-7535bd4a-c848-4ac8-9399-9c8d7beb92ad.jpg" width="300">
+
