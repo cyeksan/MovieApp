@@ -72,7 +72,7 @@ dependencies {
 
     // Dagger & Hilt
     implementation 'com.google.dagger:hilt-android:2.38.1'
-    implementation "androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
     kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
 
     // Landscapist - Glide
@@ -80,6 +80,9 @@ dependencies {
 
     // Pager
     implementation "com.google.accompanist:accompanist-pager:0.22.0-rc"
+
+    // SwipeRefresh
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.24.1-alpha"
 
 }
 

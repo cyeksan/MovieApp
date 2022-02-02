@@ -1,5 +1,6 @@
 package com.example.movieapp.presentation.movie_list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,9 +14,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.movieapp.presentation.Screen
 import com.example.movieapp.presentation.movie_list.components.MovieListItem
 import com.example.movieapp.presentation.now_playing_movie_list.NowPlayingMovieListScreen
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun MovieListScreen(
@@ -23,39 +28,58 @@ fun MovieListScreen(
     viewModel: MovieListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    Column(
-        modifier = Modifier
-            .fillMaxSize(), verticalArrangement = Arrangement.Top
+
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(state.isRefreshing),
+        onRefresh = { viewModel.refresh() },
+        indicator = { refreshState, trigger ->
+            SwipeRefreshIndicator(
+                // Pass the SwipeRefreshState + trigger through
+                state = refreshState,
+                refreshTriggerDistance = trigger,
+                // Enable the scale animation
+                scale = true,
+                // Change the color and shape
+                backgroundColor = MaterialTheme.colors.primary,
+                largeIndication = true,
+            )
+        }
     ) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            item {
-                NowPlayingMovieListScreen(navController = navController)
-            }
-            items(state.movies) { movie ->
-                MovieListItem(
-                    movie = movie, onItemClick = {
-                        navController.navigate(Screen.MovieDetailScreen.route + "/${it.id}")
-                    }
-                )
-            }
-        }
-    }
-
-    if (state.error.isNotBlank()) {
-        Text(
-            text = state.error,
-            color = MaterialTheme.colors.error,
-            textAlign = TextAlign.Center,
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp),
-        )
+                .fillMaxSize(), verticalArrangement = Arrangement.Top
+        ) {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                item {
+                    NowPlayingMovieListScreen(navController = navController)
+                }
+                items(state.movies) { movie ->
+                    MovieListItem(
+                        movie = movie, onItemClick = {
+                            navController.navigate(Screen.MovieDetailScreen.route + "/${it.id}")
+                        }
+                    )
+                }
+            }
+        }
 
-    }
+        if (state.error.isNotBlank()) {
+            Text(
+                text = state.error,
+                color = MaterialTheme.colors.error,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp),
+            )
 
-    if (state.isLoading) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator(modifier = Modifier.size(48.dp))
+        }
+
+        if (state.isLoading) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator(modifier = Modifier.size(48.dp))
+            }
         }
     }
+
 }
