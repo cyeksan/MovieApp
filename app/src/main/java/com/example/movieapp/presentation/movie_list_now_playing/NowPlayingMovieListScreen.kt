@@ -1,10 +1,8 @@
-package com.example.movieapp.presentation.now_playing_movie_list
+package com.example.movieapp.presentation.movie_list_now_playing
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -13,8 +11,8 @@ import androidx.navigation.NavController
 import com.example.movieapp.common.Constants
 import com.example.movieapp.presentation.Screen
 import com.example.movieapp.presentation.movie_detail.components.PosterImage
-import com.example.movieapp.presentation.now_playing_movie_list.components.DotsIndicator
-import com.example.movieapp.presentation.now_playing_movie_list.components.NowPlayingMovieTitleAndContent
+import com.example.movieapp.presentation.movie_list_now_playing.components.DotsIndicator
+import com.example.movieapp.presentation.movie_list_now_playing.components.NowPlayingMovieTitleAndContent
 import com.example.movieapp.presentation.ui.theme.UnselectedDot
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager

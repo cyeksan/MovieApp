@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.now_playing_movie_list.components
+package com.example.movieapp.presentation.movie_list_now_playing.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movieapp.R
-import com.example.movieapp.presentation.now_playing_movie_list.NowPlayingMovieListState
+import com.example.movieapp.presentation.movie_list_now_playing.NowPlayingMovieListState
 
 @Composable
 fun NowPlayingMovieTitleAndContent(state: NowPlayingMovieListState) {

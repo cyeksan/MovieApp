@@ -1,7 +1,7 @@
 package com.example.movieapp.data.remote
 
 import com.example.movieapp.data.remote.dto.MovieDetailDto
-import com.example.movieapp.data.remote.dto.MovieDto2
+import com.example.movieapp.data.remote.dto.MovieDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,14 +12,14 @@ interface MovieDbApi {
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: String
-    ): MovieDto2
+    ): MovieDto
 
     @GET("movie/now_playing?")
     suspend fun getNowPlayingMovies(
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: String
-    ): MovieDto2
+    ): MovieDto
 
     @GET("movie/{id}")
     suspend fun getMovieDetail(

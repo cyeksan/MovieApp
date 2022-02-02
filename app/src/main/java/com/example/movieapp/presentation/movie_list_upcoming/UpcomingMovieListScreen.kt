@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.movie_list
+package com.example.movieapp.presentation.movie_list_upcoming
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.movieapp.presentation.Screen
-import com.example.movieapp.presentation.movie_list.components.MovieListItem
-import com.example.movieapp.presentation.now_playing_movie_list.NowPlayingMovieListScreen
+import com.example.movieapp.presentation.movie_list_now_playing.NowPlayingMovieListScreen
+import com.example.movieapp.presentation.movie_list_upcoming.components.MovieListItem
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.collect
 @Composable
 fun MovieListScreen(
     navController: NavController,
-    viewModel: MovieListViewModel = hiltViewModel()
+    viewModel: UpcomingMovieListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
     val listState = rememberLazyListState()
@@ -64,8 +64,7 @@ fun MovieListScreen(
                     )
                     listState.OnBottomReached {
                         // do on load more
-                        state.pageState++
-                        viewModel.fetchMoreItems(state.pageState.toString())
+                        viewModel.fetchMoreItems(state.pageState++)
                     }
                 }
             }

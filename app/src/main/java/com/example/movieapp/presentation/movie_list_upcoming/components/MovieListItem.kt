@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.movie_list.components
+package com.example.movieapp.presentation.movie_list_upcoming.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

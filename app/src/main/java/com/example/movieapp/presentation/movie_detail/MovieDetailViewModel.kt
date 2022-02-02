@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.common.Constants
 import com.example.movieapp.common.Resource
-import com.example.movieapp.domain.use_cases.get_movie.GetMovieUseCase
+import com.example.movieapp.domain.use_cases.get_movie_detail.GetMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

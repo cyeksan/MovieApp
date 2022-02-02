@@ -1,8 +1,8 @@
-package com.example.movieapp.domain.use_cases.get_movie
+package com.example.movieapp.domain.use_cases.get_upcoming_movies
 
 import com.example.movieapp.common.Resource
-import com.example.movieapp.data.remote.dto.toMovieDetail
-import com.example.movieapp.domain.model.MovieDetail
+import com.example.movieapp.data.remote.dto.toMovie
+import com.example.movieapp.domain.model.Movie
 import com.example.movieapp.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -10,12 +10,12 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetMovieUseCase @Inject constructor(private val repository: MovieRepository) {
-    operator fun invoke(movieId: Int): Flow<Resource<MovieDetail>> = flow {
+class GetUpcomingMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
+    operator fun invoke(page: String): Flow<Resource<Movie>> = flow {
         try {
             emit(Resource.Loading())
-            val movie = repository.getMovieById(movieId).toMovieDetail()
-            emit(Resource.Success(movie))
+            val movies = repository.getMovies(page).toMovie()
+            emit(Resource.Success(movies))
 
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred" ))

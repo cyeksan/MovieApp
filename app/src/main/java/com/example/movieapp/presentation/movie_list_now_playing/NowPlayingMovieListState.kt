@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.now_playing_movie_list
+package com.example.movieapp.presentation.movie_list_now_playing
 
 import com.example.movieapp.data.remote.dto.MovieDetailDto
 import com.google.accompanist.pager.ExperimentalPagerApi

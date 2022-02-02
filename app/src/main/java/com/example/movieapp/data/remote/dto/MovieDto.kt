@@ -1,8 +1,8 @@
 package com.example.movieapp.data.remote.dto
 
-import com.example.movieapp.domain.model.Movie2
+import com.example.movieapp.domain.model.Movie
 
-data class MovieDto2(
+data class MovieDto(
     val dates: Dates,
     val page: Int,
     val results: List<MovieDetailDto>,
@@ -10,8 +10,9 @@ data class MovieDto2(
     val total_results: Int
 )
 
-fun MovieDto2.toMovie() :Movie2 {
-    return Movie2(
-        results = results
+fun MovieDto.toMovie() :Movie {
+    return Movie(
+        results = results,
+        page = page
     )
 }

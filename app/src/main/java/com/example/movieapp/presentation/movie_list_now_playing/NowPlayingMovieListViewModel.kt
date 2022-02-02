@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.now_playing_movie_list
+package com.example.movieapp.presentation.movie_list_now_playing
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

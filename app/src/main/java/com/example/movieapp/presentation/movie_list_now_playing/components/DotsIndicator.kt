@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.now_playing_movie_list.components
+package com.example.movieapp.presentation.movie_list_now_playing.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

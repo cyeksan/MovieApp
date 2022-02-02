@@ -7,10 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,8 +16,8 @@ import androidx.navigation.navArgument
 import com.example.movieapp.common.Constants
 import com.example.movieapp.presentation.Screen
 import com.example.movieapp.presentation.movie_detail.MovieDetailScreen
-import com.example.movieapp.presentation.movie_list.MovieListScreen
-import com.example.movieapp.presentation.now_playing_movie_list.NowPlayingMovieListScreen
+import com.example.movieapp.presentation.movie_list_upcoming.MovieListScreen
+import com.example.movieapp.presentation.movie_list_now_playing.NowPlayingMovieListScreen
 import com.example.movieapp.presentation.ui.theme.MovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.MovieListScreen.route) {
+                    NavHost(navController = navController, startDestination = Screen.UpcomingMovieListScreen.route) {
 
                         composable(
                             route = Screen.NowPlayingMovieListScreen.route
@@ -47,14 +44,14 @@ class MainActivity : ComponentActivity() {
                             NowPlayingMovieListScreen(navController = navController)
                         }
                         composable(
-                            route = Screen.MovieListScreen.route
+                            route = Screen.UpcomingMovieListScreen.route
                         ) {
                             MovieListScreen(navController = navController)
                         }
 
                         composable(
-                            route = Screen.MovieDetailScreen.route + "/{movieId}",
-                            arguments = listOf(navArgument("movieId") { type = NavType.IntType })
+                            route = Screen.MovieDetailScreen.route + "/{${Constants.PARAM_MOVIE_ID}}",
+                            arguments = listOf(navArgument(Constants.PARAM_MOVIE_ID) { type = NavType.IntType })
 
                         ) {
                             MovieDetailScreen()
