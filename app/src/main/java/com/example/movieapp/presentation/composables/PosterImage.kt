@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -25,7 +27,17 @@ fun PosterImage(posterPath: Any) {
             imageModel = Constants.POSTER_BASE_PATH + posterPath,
             contentScale = ContentScale.Crop,
             placeHolder = painterResource(id = R.drawable.ic_poster_placeholder),
-            error = painterResource(id = R.drawable.ic_poster_error)
+            error = painterResource(id = R.drawable.ic_poster_error),
+            colorFilter = ColorFilter.colorMatrix(
+                ColorMatrix(
+                    floatArrayOf(
+                        0.60f, 0f, 0f, 0f, 0f,
+                        0f, 0.60f, 0f, 0f, 0f,
+                        0f, 0f, 0.60f, 0f, 0f,
+                        0f, 0f, 0f, 1f, 0f
+                    )
+                )
+            )
         )
 
     }
