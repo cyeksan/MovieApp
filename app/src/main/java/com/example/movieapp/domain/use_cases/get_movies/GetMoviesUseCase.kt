@@ -11,10 +11,10 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
-    operator fun invoke(): Flow<Resource<Movie2>> = flow {
+    operator fun invoke(page: String): Flow<Resource<Movie2>> = flow {
         try {
             emit(Resource.Loading())
-            val movies = repository.getMovies().toMovie()
+            val movies = repository.getMovies(page).toMovie()
             emit(Resource.Success(movies))
 
         } catch (e: HttpException) {

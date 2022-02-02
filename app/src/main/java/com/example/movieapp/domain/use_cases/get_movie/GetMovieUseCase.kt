@@ -15,12 +15,12 @@ class GetMovieUseCase @Inject constructor(private val repository: MovieRepositor
         try {
             emit(Resource.Loading())
             val movie = repository.getMovieById(movieId).toMovieDetail()
-            emit(Resource.Success<MovieDetail>(movie))
+            emit(Resource.Success(movie))
 
         } catch (e: HttpException) {
-            emit(Resource.Error<MovieDetail>(e.localizedMessage ?: "An unexpected error occurred" ))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred" ))
         } catch (e: IOException) {
-            emit(Resource.Error<MovieDetail>(e.localizedMessage ?: "Couldn't reach the server. Check your internet connection" ))
+            emit(Resource.Error(e.localizedMessage ?: "Couldn't reach the server. Check your internet connection" ))
 
         }
     }

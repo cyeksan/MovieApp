@@ -30,13 +30,11 @@ class MovieDetailViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _state.value = MovieDetailState(movie = result.data)
-
                 }
                 is Resource.Error -> {
                     _state.value = MovieDetailState(
                         error = result.message ?: "An unexpected error occurred"
                     )
-
                 }
                 is Resource.Loading -> {
                     _state.value = MovieDetailState(isLoading = true)

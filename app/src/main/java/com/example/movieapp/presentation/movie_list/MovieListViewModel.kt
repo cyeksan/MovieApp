@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.common.Constants
 import com.example.movieapp.common.Resource
 import com.example.movieapp.domain.use_cases.get_movies.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,15 +20,15 @@ class MovieListViewModel @Inject constructor(
     val state: State<MovieListState> = _state
 
     init {
-        getMovies()
+        getMovies(Constants.DEFAULT_PAGE.toString())
     }
 
-    private fun getMovies() {
-        getMoviesUseCase().onEach { result ->
+    private fun getMovies(page: String) {
+        getMoviesUseCase(page).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _state.value = MovieListState(movies = result.data!!.results)
-
+                    _state.value =
+                        MovieListState(movies = _state.value.movies + result.data!!.results)
                 }
                 is Resource.Error -> {
                     _state.value = MovieListState(
@@ -37,6 +38,7 @@ class MovieListViewModel @Inject constructor(
                 }
                 is Resource.Loading -> {
                     _state.value = MovieListState(isLoading = true)
+
                 }
             }
         }.launchIn(viewModelScope)
@@ -44,7 +46,13 @@ class MovieListViewModel @Inject constructor(
 
     fun refresh() {
         _state.value = MovieListState(isRefreshing = true)
-        getMovies()
+        _state.value = MovieListState(pageState = 1)
+        getMovies(state.value.pageState.toString())
         _state.value = MovieListState(isRefreshing = false)
+    }
+
+    fun fetchMoreItems(page: String) {
+        getMovies(page)
+
     }
 }
