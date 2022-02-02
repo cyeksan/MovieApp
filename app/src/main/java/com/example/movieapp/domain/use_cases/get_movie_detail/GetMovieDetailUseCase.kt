@@ -10,7 +10,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetMovieUseCase @Inject constructor(private val repository: MovieRepository) {
+class GetMovieDetailUseCase @Inject constructor(private val repository: MovieRepository) {
     operator fun invoke(movieId: Int): Flow<Resource<MovieDetail>> = flow {
         try {
             emit(Resource.Loading())

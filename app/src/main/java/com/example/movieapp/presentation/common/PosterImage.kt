@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.movie_detail.components
+package com.example.movieapp.presentation.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -39,6 +39,5 @@ fun PosterImage(posterPath: Any) {
                 )
             )
         )
-
     }
 }

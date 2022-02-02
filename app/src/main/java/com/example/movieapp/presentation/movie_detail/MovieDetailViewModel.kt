@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.common.Constants
 import com.example.movieapp.common.Resource
-import com.example.movieapp.domain.use_cases.get_movie_detail.GetMovieUseCase
+import com.example.movieapp.domain.use_cases.get_movie_detail.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val getMovieUseCase: GetMovieUseCase,
+    private val getMovieDetailUseCase: GetMovieDetailUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _state = mutableStateOf(MovieDetailState())
@@ -23,10 +23,10 @@ class MovieDetailViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>(Constants.PARAM_MOVIE_ID)?.let { movieId ->
-            getMovie(movieId = movieId) }
+            getMovieDetail(movieId = movieId) }
     }
-    private fun getMovie(movieId: Int) {
-        getMovieUseCase(movieId).onEach { result ->
+    private fun getMovieDetail(movieId: Int) {
+        getMovieDetailUseCase(movieId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.value = MovieDetailState(movie = result.data)

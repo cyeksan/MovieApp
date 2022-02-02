@@ -10,7 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.movieapp.common.Constants
 import com.example.movieapp.presentation.Screen
-import com.example.movieapp.presentation.movie_detail.components.PosterImage
+import com.example.movieapp.presentation.common.PosterImage
 import com.example.movieapp.presentation.movie_list_now_playing.components.DotsIndicator
 import com.example.movieapp.presentation.movie_list_now_playing.components.NowPlayingMovieTitleAndContent
 import com.example.movieapp.presentation.ui.theme.UnselectedDot

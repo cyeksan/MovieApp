@@ -15,20 +15,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UpcomingMovieListViewModel @Inject constructor(
-    private val getMoviesUseCase: GetUpcomingMoviesUseCase,
+    private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
 ) : ViewModel() {
     private val _state = mutableStateOf(UpcomingMovieListState())
     val state: State<UpcomingMovieListState> = _state
     var list = mutableListOf<MovieDetailDto>()
 
     init {
-
-        getMovies(Constants.DEFAULT_PAGE.toString())
-
+        getUpcomingMovies(Constants.DEFAULT_PAGE.toString())
     }
 
-    private fun getMovies(page: String) {
-        getMoviesUseCase(page).onEach { result ->
+    private fun getUpcomingMovies(page: String) {
+        getUpcomingMoviesUseCase(page).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.value =
@@ -41,7 +39,6 @@ class UpcomingMovieListViewModel @Inject constructor(
                     _state.value = UpcomingMovieListState(
                         error = result.message ?: "An unexpected error occurred"
                     )
-
                 }
                 is Resource.Loading -> {
                     _state.value = UpcomingMovieListState(isLoading = true)
@@ -54,12 +51,12 @@ class UpcomingMovieListViewModel @Inject constructor(
     fun refresh() {
         list.clear()
         _state.value = UpcomingMovieListState(isRefreshing = true)
-        _state.value = UpcomingMovieListState(pageState = 1)
-        getMovies(state.value.pageState.toString())
+        _state.value = UpcomingMovieListState(page = 1)
+        getUpcomingMovies(state.value.page.toString())
         _state.value = UpcomingMovieListState(isRefreshing = false)
     }
 
     fun fetchMoreItems(page: Int) {
-        getMovies(page.toString())
+        getUpcomingMovies(page.toString())
     }
 }

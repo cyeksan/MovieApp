@@ -1,6 +1,5 @@
 package com.example.movieapp.presentation.ui.theme
 
-import android.graphics.Color
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors

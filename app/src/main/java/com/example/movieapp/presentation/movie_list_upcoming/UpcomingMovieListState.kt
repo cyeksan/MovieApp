@@ -8,6 +8,5 @@ data class UpcomingMovieListState(
     val movies: List<MovieDetailDto> = emptyList(),
     val error: String = "",
     val isRefreshing: Boolean = false,
-    var pageState: Int = 1,
-    val isScrolling: Boolean = false
+    var page: Int = 1,
 )

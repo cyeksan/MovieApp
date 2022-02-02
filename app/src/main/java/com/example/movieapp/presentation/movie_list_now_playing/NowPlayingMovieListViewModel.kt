@@ -23,7 +23,6 @@ class NowPlayingMovieListViewModel @Inject constructor(
         getNowPlayingMovies()
     }
 
-    @OptIn(ExperimentalPagerApi::class)
     private fun getNowPlayingMovies() {
         getNowPlayingMovieUseCase().onEach { result ->
             when (result) {
@@ -34,7 +33,6 @@ class NowPlayingMovieListViewModel @Inject constructor(
                     _state.value = NowPlayingMovieListState(
                         error = result.message ?: "An unexpected error occurred"
                     )
-
                 }
                 is Resource.Loading -> {
                     _state.value = NowPlayingMovieListState(isLoading = true)

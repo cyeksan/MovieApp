@@ -1,27 +1,25 @@
 package com.example.movieapp.presentation.movie_list_upcoming
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.movieapp.presentation.Screen
+import com.example.movieapp.presentation.common.ErrorWarning
+import com.example.movieapp.presentation.common.ProgressBar
 import com.example.movieapp.presentation.movie_list_now_playing.NowPlayingMovieListScreen
 import com.example.movieapp.presentation.movie_list_upcoming.components.MovieListItem
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 @Composable
@@ -63,51 +61,31 @@ fun MovieListScreen(
                 }
             }
             listState.OnBottomReached {
-                // do on load more
-                viewModel.fetchMoreItems(state.pageState++)
+                viewModel.fetchMoreItems(state.page++) // fetch more data with increasing page number
             }
-
         }
-
         if (state.error.isNotBlank()) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = state.error,
-                    color = MaterialTheme.colors.error,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp),
-                )
-            }
+            ErrorWarning(state.error)
         }
-
         if (state.isLoading) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(modifier = Modifier.size(48.dp))
-            }
+            ProgressBar()
         }
     }
 
 }
 
-@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun LazyListState.OnBottomReached(
-    loadMore: () -> Unit) {
+    loadMore: () -> Unit
+) {
     val shouldLoadMore = remember {
         derivedStateOf {
             val lastVisibleItem = layoutInfo.visibleItemsInfo.lastOrNull()
                 ?:
-                // list is empty
-                // return false here if loadMore should not be invoked if the list is empty
                 return@derivedStateOf true
-
-            // Check if last visible item is the last item in the list
             lastVisibleItem.index == layoutInfo.totalItemsCount - 1
         }
     }
-
-    // Convert the state into a cold flow and collect
     LaunchedEffect(shouldLoadMore) {
         snapshotFlow { shouldLoadMore.value }.collect {
             if (it) loadMore()
