@@ -13,5 +13,4 @@ data class NowPlayingMovieListState @OptIn(ExperimentalPagerApi::class) construc
     var posterTitleState: String? = null,
     var posterContentState: String? = null,
     var idState: Int = 0
-
-    )
+)

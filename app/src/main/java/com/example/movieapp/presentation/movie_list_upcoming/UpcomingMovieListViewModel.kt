@@ -4,15 +4,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.example.movieapp.common.Constants
 import com.example.movieapp.common.Resource
-import com.example.movieapp.domain.model.Movie
+import com.example.movieapp.data.remote.dto.MovieDetailDto
 import com.example.movieapp.domain.use_cases.get_upcoming_movies.GetUpcomingMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -23,10 +19,12 @@ class UpcomingMovieListViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = mutableStateOf(UpcomingMovieListState())
     val state: State<UpcomingMovieListState> = _state
-
+    var list = mutableListOf<MovieDetailDto>()
 
     init {
+
         getMovies(Constants.DEFAULT_PAGE.toString())
+
     }
 
     private fun getMovies(page: String) {
@@ -34,8 +32,10 @@ class UpcomingMovieListViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     _state.value =
-                        UpcomingMovieListState(movies = _state.value.movies + result.data!!.results)
+                        UpcomingMovieListState(movies = result.data!!.results)
 
+                    if (page != 1.toString()) list.addAll(result.data.results)
+                    else list = result.data.results.toMutableList()
                 }
                 is Resource.Error -> {
                     _state.value = UpcomingMovieListState(
@@ -52,6 +52,7 @@ class UpcomingMovieListViewModel @Inject constructor(
     }
 
     fun refresh() {
+        list.clear()
         _state.value = UpcomingMovieListState(isRefreshing = true)
         _state.value = UpcomingMovieListState(pageState = 1)
         getMovies(state.value.pageState.toString())
@@ -61,5 +62,4 @@ class UpcomingMovieListViewModel @Inject constructor(
     fun fetchMoreItems(page: Int) {
         getMovies(page.toString())
     }
-
 }

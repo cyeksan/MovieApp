@@ -14,7 +14,7 @@ class GetUpcomingMoviesUseCase @Inject constructor(private val repository: Movie
     operator fun invoke(page: String): Flow<Resource<Movie>> = flow {
         try {
             emit(Resource.Loading())
-            val movies = repository.getMovies(page).toMovie()
+            val movies = repository.getUpcomingMovies(page).toMovie()
             emit(Resource.Success(movies))
 
         } catch (e: HttpException) {

@@ -37,12 +37,9 @@ fun MovieListScreen(
         onRefresh = { viewModel.refresh() },
         indicator = { refreshState, trigger ->
             SwipeRefreshIndicator(
-                // Pass the SwipeRefreshState + trigger through
                 state = refreshState,
                 refreshTriggerDistance = trigger,
-                // Enable the scale animation
                 scale = true,
-                // Change the color and shape
                 backgroundColor = MaterialTheme.colors.primary,
                 largeIndication = true,
             )
@@ -56,17 +53,18 @@ fun MovieListScreen(
                 item {
                     NowPlayingMovieListScreen(navController = navController)
                 }
-                items(state.movies) { movie ->
+                items(viewModel.list) { movie ->
                     MovieListItem(
                         movie = movie, onItemClick = {
                             navController.navigate(Screen.MovieDetailScreen.route + "/${it.id}")
                         }
                     )
-                    listState.OnBottomReached {
-                        // do on load more
-                        viewModel.fetchMoreItems(state.pageState++)
-                    }
+
                 }
+            }
+            listState.OnBottomReached {
+                // do on load more
+                viewModel.fetchMoreItems(state.pageState++)
             }
 
         }
@@ -95,13 +93,9 @@ fun MovieListScreen(
 @OptIn(InternalCoroutinesApi::class)
 @Composable
 fun LazyListState.OnBottomReached(
-    loadMore: () -> Unit
-) {
-    // state object which tells us if we should load more
+    loadMore: () -> Unit) {
     val shouldLoadMore = remember {
         derivedStateOf {
-
-            // get last visible item
             val lastVisibleItem = layoutInfo.visibleItemsInfo.lastOrNull()
                 ?:
                 // list is empty
@@ -117,7 +111,6 @@ fun LazyListState.OnBottomReached(
     LaunchedEffect(shouldLoadMore) {
         snapshotFlow { shouldLoadMore.value }.collect {
             if (it) loadMore()
-
         }
     }
 }

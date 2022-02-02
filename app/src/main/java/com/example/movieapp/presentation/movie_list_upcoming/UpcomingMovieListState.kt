@@ -9,5 +9,5 @@ data class UpcomingMovieListState(
     val error: String = "",
     val isRefreshing: Boolean = false,
     var pageState: Int = 1,
-    var isScrolling: Boolean = false
+    val isScrolling: Boolean = false
 )
