@@ -39,7 +39,7 @@ fun MovieDetailScreen(
             color = MaterialTheme.colors.error,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(horizontal = 20.dp),
         )
 

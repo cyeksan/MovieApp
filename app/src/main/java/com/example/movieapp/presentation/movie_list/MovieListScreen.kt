@@ -29,7 +29,7 @@ fun MovieListScreen(
     ) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             item {
-                NowPlayingMovieListScreen()
+                NowPlayingMovieListScreen(navController = navController)
             }
             items(state.movies) { movie ->
                 MovieListItem(

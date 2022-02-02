@@ -20,6 +20,7 @@ import com.example.movieapp.common.Constants
 import com.example.movieapp.presentation.Screen
 import com.example.movieapp.presentation.movie_detail.MovieDetailScreen
 import com.example.movieapp.presentation.movie_list.MovieListScreen
+import com.example.movieapp.presentation.now_playing_movie_list.NowPlayingMovieListScreen
 import com.example.movieapp.presentation.ui.theme.MovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +40,12 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = Screen.MovieListScreen.route) {
+
+                        composable(
+                            route = Screen.NowPlayingMovieListScreen.route
+                        ) {
+                            NowPlayingMovieListScreen(navController = navController)
+                        }
                         composable(
                             route = Screen.MovieListScreen.route
                         ) {

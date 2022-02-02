@@ -1,12 +1,17 @@
 package com.example.movieapp.presentation.now_playing_movie_list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.movieapp.common.Constants
+import com.example.movieapp.presentation.Screen
 import com.example.movieapp.presentation.movie_detail.components.PosterImage
 import com.example.movieapp.presentation.now_playing_movie_list.components.DotsIndicator
 import com.example.movieapp.presentation.now_playing_movie_list.components.NowPlayingMovieTitleAndContent
@@ -15,9 +20,10 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class, kotlinx.coroutines.InternalCoroutinesApi::class)
 @Composable
 fun NowPlayingMovieListScreen(
+    navController: NavController,
     viewModel: NowPlayingMovieListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
@@ -30,7 +36,6 @@ fun NowPlayingMovieListScreen(
                 .fillMaxWidth()
                 .height(256.dp)
         ) {
-
             HorizontalPager(
                 count = 5,
                 state = state.pagerState!!,
@@ -43,7 +48,10 @@ fun NowPlayingMovieListScreen(
                     3 -> setPageValues(3, state)
                     4 -> setPageValues(4, state)
                 }
-                Box(Modifier.fillMaxSize()) {
+                Box(Modifier.fillMaxSize().clickable {
+                    navController.navigate(Screen.MovieDetailScreen.route + "/${state.idState}")
+
+                }) {
                     PosterImage(posterPath = Constants.BACKDROP_BASE_PATH + state.sliderState)
                 }
                 Column(
@@ -66,7 +74,10 @@ fun NowPlayingMovieListScreen(
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 fun setPageValues(i: Int, state: NowPlayingMovieListState) {
+    val currentIndex = state.pagerState!!.currentPage
+    state.idState = state.movies[currentIndex].id
     state.sliderState = state.movies[i].posterPath as String
     state.posterTitleState = state.movies[i].title
     state.posterContentState = state.movies[i].overview
