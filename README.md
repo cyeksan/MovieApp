@@ -10,11 +10,11 @@ Clean Architecture with MVVM architectural pattern
 
 ## Used Technologies:
 
-Jetpack Compose
-Hilt
-Retrofit
-Coroutines
-Flow
+* Jetpack Compose
+* Hilt
+* Retrofit
+* Coroutines
+* Flow
 
 - Also, pagination (endless scroll) and swipe refresh have been applied.
 
