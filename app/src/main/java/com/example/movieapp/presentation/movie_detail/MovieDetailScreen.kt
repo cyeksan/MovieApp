@@ -8,7 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.movieapp.presentation.common.ErrorWarning
+import com.example.movieapp.presentation.common.ErrorItem
 import com.example.movieapp.presentation.common.PosterImage
 import com.example.movieapp.presentation.common.ProgressBar
 import com.example.movieapp.presentation.movie_detail.components.Detail
@@ -27,7 +27,7 @@ fun MovieDetailScreen(
             .verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.Top
     ) {
         state.movie?.let { movieDetail ->
-            PosterImage(posterPath = movieDetail.posterPath)
+            movieDetail.posterPath?.let { PosterImage(posterPath = it) }
             ImdbRateAndRow(
                 rate = movieDetail.voteAverage,
                 releaseDate = movieDetail.releaseDate.extDateFormatter()
@@ -37,7 +37,7 @@ fun MovieDetailScreen(
     }
 
     if (state.error.isNotBlank()) {
-        ErrorWarning(errorMessage = state.error)
+        ErrorItem(errorMessage = state.error)
     }
 
     if (state.isLoading) {

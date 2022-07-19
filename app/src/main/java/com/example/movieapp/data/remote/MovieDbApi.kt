@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface MovieDbApi {
     @GET("movie/upcoming?")
-    suspend fun getMovies(
+    suspend fun getUpcomingMovies(
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: String

@@ -18,7 +18,7 @@ import com.example.movieapp.data.remote.dto.MovieDetailDto
 import com.example.movieapp.presentation.ui.theme.TextGray
 
 @Composable
-fun MovieListItemReleaseDate(movie : MovieDetailDto) {
+fun MovieListItemReleaseDate(movie: MovieDetailDto) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

@@ -43,7 +43,7 @@ data class MovieDetailDto(
     val voteCount: Int,
 )
 
-fun MovieDetailDto.toMovieDetail() : MovieDetail {
+fun MovieDetailDto.toMovieDetail(): MovieDetail {
     return MovieDetail(
         id = id,
         posterPath = posterPath,

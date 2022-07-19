@@ -18,9 +18,14 @@ class GetMovieDetailUseCase @Inject constructor(private val repository: MovieRep
             emit(Resource.Success(movie))
 
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred" ))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException) {
-            emit(Resource.Error(e.localizedMessage ?: "Couldn't reach the server. Check your internet connection" ))
+            emit(
+                Resource.Error(
+                    e.localizedMessage
+                        ?: "Couldn't reach the server. Check your internet connection"
+                )
+            )
 
         }
     }

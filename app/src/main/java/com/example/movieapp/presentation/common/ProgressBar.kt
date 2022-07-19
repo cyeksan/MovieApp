@@ -12,6 +12,10 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ProgressBar() {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        CircularProgressIndicator(modifier = Modifier.size(48.dp))
+        CircularProgressIndicator(
+            modifier = Modifier
+                .size(48.dp)
+                .align(Alignment.Center)
+        )
     }
 }

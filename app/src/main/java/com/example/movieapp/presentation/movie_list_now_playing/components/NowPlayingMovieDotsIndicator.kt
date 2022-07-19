@@ -12,16 +12,17 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DotsIndicator(
-    totalDots : Int,
-    selectedIndex : Int,
+    totalDots: Int,
+    selectedIndex: Int,
     selectedColor: Color,
     unSelectedColor: Color,
-){
+) {
 
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight().padding(0.dp, 16.dp),
+            .wrapContentHeight()
+            .padding(0.dp, 16.dp),
         horizontalArrangement = Arrangement.Center
 
     ) {

@@ -46,10 +46,13 @@ fun NowPlayingMovieListScreen(
                     3 -> setPageValues(3, state)
                     4 -> setPageValues(4, state)
                 }
-                Box(Modifier.fillMaxSize().clickable {
-                    navController.navigate(Screen.MovieDetailScreen.route + "/${state.idState}")
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .clickable {
+                            navController.navigate(Screen.MovieDetailScreen.route + "/${state.idState}")
 
-                }) {
+                        }) {
                     PosterImage(posterPath = Constants.BACKDROP_BASE_PATH + state.sliderState)
                 }
                 Column(

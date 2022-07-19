@@ -10,7 +10,7 @@ data class MovieDto(
     val total_results: Int
 )
 
-fun MovieDto.toMovie() :Movie {
+fun MovieDto.toMovie(): Movie {
     return Movie(
         results = results,
         page = page

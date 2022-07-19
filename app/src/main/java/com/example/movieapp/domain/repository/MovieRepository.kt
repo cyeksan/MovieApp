@@ -6,5 +6,5 @@ import com.example.movieapp.data.remote.dto.MovieDto
 interface MovieRepository {
     suspend fun getUpcomingMovies(page: String): MovieDto
     suspend fun getNowPlayingMovies(): MovieDto
-    suspend fun getMovieById(movieId: Int) : MovieDetailDto
+    suspend fun getMovieById(movieId: Int): MovieDetailDto
 }

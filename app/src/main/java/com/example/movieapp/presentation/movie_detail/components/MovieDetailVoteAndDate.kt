@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movieapp.R
 import com.example.movieapp.presentation.ui.theme.DarkGray
-import com.example.movieapp.presentation.ui.theme.TextBlack
+import com.example.movieapp.presentation.ui.theme.TextItemColor
 
 @Composable
 fun ImdbRateAndRow(rate: Double, releaseDate: String) {
@@ -31,14 +31,16 @@ fun ImdbRateAndRow(rate: Double, releaseDate: String) {
             contentDescription = "rate icon",
             modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp)
         )
-        Text(text = rate.toString(), modifier = Modifier.padding(4.dp, 0.dp, 0.dp, 0.dp),
+        Text(
+            text = rate.toString(), modifier = Modifier.padding(4.dp, 0.dp, 0.dp, 0.dp),
             fontFamily = FontFamily(Font(R.font.roboto_medium)),
             fontWeight = FontWeight.W500,
             fontSize = 13.sp,
-            color = TextBlack,
+            color = TextItemColor,
             lineHeight = 18.sp
         )
-        Text(text = "/10",
+        Text(
+            text = "/10",
             fontFamily = FontFamily(Font(R.font.roboto_medium)),
             fontWeight = FontWeight.W500,
             fontSize = 13.sp,
@@ -50,11 +52,12 @@ fun ImdbRateAndRow(rate: Double, releaseDate: String) {
             contentDescription = "separator icon",
             modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp)
         )
-        Text(text = releaseDate, modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+        Text(
+            text = releaseDate, modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
             fontFamily = FontFamily(Font(R.font.roboto_medium)),
             fontWeight = FontWeight.W500,
             fontSize = 13.sp,
-            color = TextBlack,
+            color = TextItemColor,
             lineHeight = 18.sp
         )
 

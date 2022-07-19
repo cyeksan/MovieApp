@@ -16,12 +16,15 @@ class GetNowPlayingMoviesUseCase @Inject constructor(private val repository: Mov
             emit(Resource.Loading())
             val movies = repository.getNowPlayingMovies().toMovie()
             emit(Resource.Success(movies))
-
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred" ))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException) {
-            emit(Resource.Error(e.localizedMessage ?: "Couldn't reach the server. Check your internet connection" ))
-
+            emit(
+                Resource.Error(
+                    e.localizedMessage
+                        ?: "Couldn't reach the server. Check your internet connection"
+                )
+            )
         }
     }
 }

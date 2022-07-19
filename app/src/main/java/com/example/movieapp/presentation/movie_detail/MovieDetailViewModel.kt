@@ -23,8 +23,10 @@ class MovieDetailViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>(Constants.PARAM_MOVIE_ID)?.let { movieId ->
-            getMovieDetail(movieId = movieId) }
+            getMovieDetail(movieId = movieId)
+        }
     }
+
     private fun getMovieDetail(movieId: Int) {
         getMovieDetailUseCase(movieId).onEach { result ->
             when (result) {

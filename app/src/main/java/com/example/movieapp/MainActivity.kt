@@ -16,8 +16,8 @@ import androidx.navigation.navArgument
 import com.example.movieapp.common.Constants
 import com.example.movieapp.presentation.Screen
 import com.example.movieapp.presentation.movie_detail.MovieDetailScreen
-import com.example.movieapp.presentation.movie_list_upcoming.MovieListScreen
 import com.example.movieapp.presentation.movie_list_now_playing.NowPlayingMovieListScreen
+import com.example.movieapp.presentation.movie_list_upcoming.MovieListScreen
 import com.example.movieapp.presentation.ui.theme.MovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +36,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.UpcomingMovieListScreen.route) {
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.UpcomingMovieListScreen.route
+                    ) {
 
                         composable(
                             route = Screen.NowPlayingMovieListScreen.route
@@ -51,7 +54,9 @@ class MainActivity : ComponentActivity() {
 
                         composable(
                             route = Screen.MovieDetailScreen.route + "/{${Constants.PARAM_MOVIE_ID}}",
-                            arguments = listOf(navArgument(Constants.PARAM_MOVIE_ID) { type = NavType.IntType })
+                            arguments = listOf(navArgument(Constants.PARAM_MOVIE_ID) {
+                                type = NavType.IntType
+                            })
 
                         ) {
                             MovieDetailScreen()
