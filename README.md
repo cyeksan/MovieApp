@@ -1,5 +1,7 @@
 # MovieApp
 
+https://user-images.githubusercontent.com/34041050/179856048-c68a7e29-43ec-430e-9078-1714b4146aa3.mp4
+
 In this project, [MovieDB API](https://www.themoviedb.org/documentation/api) has been used to
 retrive movie data. Upcoming movies (list at the bottom) and now playing movies (poster images at
 top) are displayed in the first screen. When one of the items (the upcoming movies or now playing
@@ -21,4 +23,11 @@ Clean Architecture with MVVM architectural pattern
 * SwipeRefresh
 * Theming
 
-<img src="https://user-images.githubusercontent.com/34041050/152230488-6c25bb74-cc51-4e2c-9948-7caab62c9cf9.jpg" width="300">                                                     <img src="https://user-images.githubusercontent.com/34041050/152230474-7535bd4a-c848-4ac8-9399-9c8d7beb92ad.jpg" width="300">                                                   <img src="https://github.com/cyeksan/Video/blob/master/SVID_20220202_231011_1.gif" alt="Movie App showcase" title="Movie App showcase" width="300"/>
+
+## Light Theme:
+
+<img src="https://user-images.githubusercontent.com/34041050/179856174-0d6142f5-c63f-4b1e-9bce-8ecab78ffa6e.png" width="300">     <img src="https://user-images.githubusercontent.com/34041050/179856233-0dafa3e1-294b-481e-ab63-951a5235cb9f.png" width="300">
+
+## Dark Theme:
+
+<img src="https://user-images.githubusercontent.com/34041050/179856303-ad3ccb00-a041-4723-9764-053241ff9e2c.png" width="300">     <img src="https://user-images.githubusercontent.com/34041050/179856344-2aa03614-d810-4cc5-987a-a3350b9ed04e.png" width="300">
