@@ -18,7 +18,7 @@ import com.example.movieapp.R
 import com.example.movieapp.common.Constants
 
 @Composable
-fun PosterImage(posterPath: Any?) {
+fun PosterImage(backdropPath: Any?) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -27,7 +27,7 @@ fun PosterImage(posterPath: Any?) {
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(Constants.BACKDROP_BASE_PATH + posterPath)
+                .data(Constants.BACKDROP_BASE_PATH + backdropPath)
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(id = R.drawable.ic_poster_placeholder),

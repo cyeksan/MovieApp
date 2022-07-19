@@ -25,7 +25,7 @@ fun MovieListItem(movie: MovieDetailDto, onItemClick: (MovieDetailDto) -> Unit) 
                 .size(104.dp)
                 .align(CenterVertically)
         ) {
-            PosterImage(posterPath = movie.backdropPath)
+            PosterImage(backdropPath = movie.backdropPath)
         }
         Column(modifier = Modifier.fillMaxWidth(0.87f)) {
             MovieListItemTitle(movie = movie)

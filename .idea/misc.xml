@@ -9,6 +9,8 @@
         <entry key="..\:/Users/c84192373/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_imdb_logo.xml" value="0.197" />
         <entry key="..\:/Users/c84192373/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_placeholder.xml" value="0.197" />
         <entry key="..\:/Users/c84192373/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/placeholder.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_poster_error.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_rate_icon.xml" value="0.1" />
       </map>
     </option>
   </component>

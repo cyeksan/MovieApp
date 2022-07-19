@@ -27,7 +27,7 @@ fun MovieDetailScreen(
             .verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.Top
     ) {
         state.movie?.let { movieDetail ->
-            movieDetail.posterPath?.let { PosterImage(posterPath = it) }
+            movieDetail.backdropPath?.let { PosterImage(backdropPath = it) }
             ImdbRateAndRow(
                 rate = movieDetail.voteAverage,
                 releaseDate = movieDetail.releaseDate.extDateFormatter()

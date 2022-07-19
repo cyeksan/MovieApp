@@ -53,7 +53,7 @@ fun NowPlayingMovieListScreen(
                             navController.navigate(Screen.MovieDetailScreen.route + "/${state.idState}")
 
                         }) {
-                    PosterImage(posterPath = Constants.BACKDROP_BASE_PATH + state.sliderState)
+                    PosterImage(backdropPath = Constants.BACKDROP_BASE_PATH + state.sliderState)
                 }
                 Column(
                     Modifier
@@ -79,7 +79,7 @@ fun NowPlayingMovieListScreen(
 fun setPageValues(i: Int, state: NowPlayingMovieListState) {
     val currentIndex = state.pagerState!!.currentPage
     state.idState = state.movies[currentIndex].id
-    state.sliderState = state.movies[i].posterPath as String
+    state.sliderState = state.movies[i].backdropPath as String
     state.posterTitleState = state.movies[i].title
     state.posterContentState = state.movies[i].overview
 }

@@ -46,7 +46,7 @@ data class MovieDetailDto(
 fun MovieDetailDto.toMovieDetail(): MovieDetail {
     return MovieDetail(
         id = id,
-        posterPath = posterPath,
+        backdropPath = backdropPath,
         releaseDate = releaseDate,
         title = title,
         overview = overview,

@@ -8,8 +8,8 @@ data class MovieDetail(
     val overview: String,
     @SerializedName("release_date")
     val releaseDate: String,
-    @SerializedName("poster_path")
-    val posterPath: Any?,
+    @SerializedName("backdrop_path")
+    val backdropPath: Any?,
     @SerializedName("vote_average")
     val voteAverage: Double
 )
