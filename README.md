@@ -17,7 +17,8 @@ Clean Architecture with MVVM architectural pattern
 * Retrofit
 * Coroutines
 * Flow
-
-- Also, pagination (endless scroll) and swipe refresh have been applied.
+* Paging3
+* SwipeRefresh
+* Theming
 
 <img src="https://user-images.githubusercontent.com/34041050/152230488-6c25bb74-cc51-4e2c-9948-7caab62c9cf9.jpg" width="300">                                                     <img src="https://user-images.githubusercontent.com/34041050/152230474-7535bd4a-c848-4ac8-9399-9c8d7beb92ad.jpg" width="300">                                                   <img src="https://github.com/cyeksan/Video/blob/master/SVID_20220202_231011_1.gif" alt="Movie App showcase" title="Movie App showcase" width="300"/>
